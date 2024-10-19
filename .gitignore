@@ -17,7 +17,7 @@ yarn-error.log*
 .idea
 .cloud
 .project
-.nuxt
+.nuxt/
 tmp/
 typings/
 
