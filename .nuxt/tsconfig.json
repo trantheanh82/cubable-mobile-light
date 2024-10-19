@@ -20,9 +20,6 @@
       "@unhead/vue": [
         "../node_modules/@unhead/vue"
       ],
-      "@nuxt/devtools": [
-        "../node_modules/@nuxt/devtools"
-      ],
       "vue": [
         "../node_modules/vue"
       ],
@@ -80,6 +77,9 @@
       "public": [
         "../public"
       ],
+      "public/*": [
+        "../public/*"
+      ],
       "#app": [
         "../node_modules/nuxt/dist/app"
       ],
@@ -96,7 +96,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/61b1938e-5443-4036-b92e-e1c96d29b3ea.json"
+        "./manifest/meta/af3f0bcd-75fb-4db6-99f4-341cabd10180.json"
       ],
       "#build": [
         "."
