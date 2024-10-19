@@ -1,0 +1,16 @@
+<Page navigatingTo="onNavigatingTo" class="bg-gray-100">
+  <ActionBar title="Workspaces" class="bg-blue-500 text-white">
+    <NavigationButton visibility="collapsed" />
+    <ActionItem ios.position="right" android.position="actionBar">
+      <StackLayout orientation="horizontal" class="action-item">
+        <Label text="&#xf08b;" class="fa text-lg mr-1" />
+        <Label text="Logout" tap="onLogout" />
+      </StackLayout>
+    </ActionItem>
+  </ActionBar>
+  <GridLayout rows="auto, *">
+    <GridLayout id="workspacesGrid" row="1" columns="*, *" rows="auto, auto, auto" class="m-5">
+      <!-- Workspaces will be added here dynamically -->
+    </GridLayout>
+  </GridLayout>
+</Page>

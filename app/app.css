@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "BeVietnamPro";
+  src: url("~/fonts/BeVietnamPro-Regular.ttf");
+}
+
+.fa {
+  font-family: FontAwesome, fontawesome-webfont;
+}
+
+Page {
+  font-family: "BeVietnamPro", "Be Vietnam Pro", sans-serif;
+}

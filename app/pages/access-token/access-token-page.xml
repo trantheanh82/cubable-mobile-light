@@ -1,0 +1,9 @@
+<Page navigatingTo="onNavigatingTo" class="bg-gray-100">
+  <ActionBar title="Access Token Entry" class="bg-blue-500 text-white" />
+  <StackLayout class="p-4">
+    <Label text="Enter Access Token" class="text-lg mb-2" />
+    <TextField id="accessTokenInput" hint="Access Token" secure="true" class="input p-2 border rounded mb-2" />
+    <Button text="Submit" tap="onSubmit" class="btn btn-primary" />
+    <Label id="errorMessage" text="" class="text-red-500 mt-2" textWrap="true" />
+  </StackLayout>
+</Page>
