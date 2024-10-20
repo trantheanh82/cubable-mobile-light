@@ -18,8 +18,11 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
+    "@vueuse/core": "^11.1.0",
+    "@vueuse/nuxt": "^11.1.0",
     "datatables.net-dt": "^1.13.4",
-    "datatables.net-vue3": "^2.1.0",
-    "naive-ui": "^2.34.3"
+    "datatables.net-vue3": "^3.0.2",
+    "naive-ui": "^2.34.3",
+    "nuxt-storage": "^1.2.2"
   }
 }

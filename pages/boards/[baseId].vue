@@ -1,15 +1,16 @@
 <template>
+  <div class="left-panel">
+
+  </div>
+  <div class="show-left-panel w-16 bg-white p-2 absolute top-16 left-0 border-gray-100 rounded-r-full flex items-end">
+    <font-awesome-icon :icon="['fas', 'border-none']" />
+  </div>
   <div>
     <div class="flex items-center mb-4">
       <button @click="$router.back()" class="mr-4">
         <font-awesome-icon :icon="['fas', 'chevron-left']" />
       </button>
-      <h1 class="text-2xl font-bold">Table Details</h1>
     </div>
-    <button @click="createNew" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-4">
-      <font-awesome-icon :icon="['fas', 'plus']" class="mr-2" />
-      Create New
-    </button>
     <DataTable
       :columns="columns"
       :data="rows"

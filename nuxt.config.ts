@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss','@kevinmarrec/nuxt-pwa'],  
   css: ['~/assets/css/main.css'],
   app: {
     head: {

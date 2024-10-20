@@ -17,6 +17,8 @@
       </div>
     </div>
   </div>
+  <pre>{{ route.params }}</pre>
+  <pre>data:{{ data }}</pre>
 </template>
 
 <script setup>
@@ -30,7 +32,13 @@ const bases = ref([
   { id: 4, name: 'Base 4' },
 ])
 
+const {data}  = await useFetch(`/api/cubable/base/detail?baseID=${route.query.baseID}`,{method: 'GET'})
+console.log('data',route)
+const baseDetail = computed(()=>{
+  return data
+})
+
 const navigateToTableDetails = (baseId) => {
-  navigateTo(`/table-details/${baseId}`)
+  navigateTo(`/boards/${baseId}`)
 }
 </script>

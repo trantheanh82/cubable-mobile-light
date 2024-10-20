@@ -2,6 +2,16 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-body {
-  font-family: 'Be Vietnam Pro', sans-serif;
+@layer base{
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+
+  p{
+   @apply text-sm;
+  }
+
+  .btn-primary{
+    @apply bg-[#5500ff] text-white;
+  }
 }

@@ -5,14 +5,14 @@
       <div class="mb-4">
         <label for="accessToken" class="block mb-2">Enter Access Token</label>
         <input
-          id="accessToken"
-          v-model="accessToken"
+          id="inputAccessToken"
+          v-model="inputAccessToken"
           type="password"
           class="w-full p-2 border rounded"
           required
         />
       </div>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      <button type="submit" class="btn-primary px-4 py-2 rounded hover:bg-blue-700">
         Submit
       </button>
     </form>
@@ -21,13 +21,15 @@
 </template>
 
 <script setup>
-const accessToken = ref('')
+const inputAccessToken = ref(null)
+const accessToken = ref(null)
 const error = ref('')
 
 const submitToken = () => {
-  // Simulating token validation (replace with actual API call)
-  if (accessToken.value === 'valid_token') {
-    navigateTo('/workspaces')
+  if (inputAccessToken.value) {    
+    const accessToken = useCookie('accessToken')
+    accessToken.value = inputAccessToken.value
+    navigateTo('/')
   } else {
     error.value = 'Invalid access token. Please try again.'
   }

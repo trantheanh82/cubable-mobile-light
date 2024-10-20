@@ -1,35 +1,37 @@
 <template>
-  <div class="max-w-md mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Access Token Entry</h1>
-    <form @submit.prevent="submitToken">
-      <div class="mb-4">
-        <label for="accessToken" class="block mb-2">Enter Access Token</label>
-        <input
-          id="accessToken"
-          v-model="accessToken"
-          type="password"
-          class="w-full p-2 border rounded"
-          required
-        />
+  <div>
+    <h1 class="text-2xl font-bold mb-4">Bases</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        v-for="base, idx in bases"
+        :key="idx"
+        class="card-bases"
+        @click="navigateToBase(`${base.id}`)"        
+      >
+        <div class="bg-black/20 backdrop-blur-md p-5 min-h-[50px]">
+          <p>{{ base.name }}</p>
+        </div>  
+
       </div>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Submit
-      </button>
-    </form>
-    <p v-if="error" class="text-red-600 mt-4">{{ error }}</p>
+    </div>
+    
   </div>
 </template>
 
 <script setup>
-const accessToken = ref('')
-const error = ref('')
 
-const submitToken = () => {
-  // Simulating token validation (replace with actual API call)
-  if (accessToken.value === 'valid_token') {
-    navigateTo('/workspaces')
-  } else {
-    error.value = 'Invalid access token. Please try again.'
+const {data:bases, pending, error} = await useFetch('/api/cubable/get-bases',{
+  transform: (data)=>{
+    return data.bases.data
   }
+})
+
+const navigateToBase = (baseID) => {
+  navigateTo(`/boards/detail?baseID=${baseID}`)
 }
 </script>
+<style scoped>
+.card-bases{
+  @apply rounded shadow-md cursor-pointer hover:shadow-md transition-shadow bg-[url('/image/bases.svg')] min-h-[250px] bg-no-repeat bg-cover flex flex-col justify-end rounded-lg;
+}
+</style>
