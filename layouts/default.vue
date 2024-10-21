@@ -5,7 +5,7 @@
         <NuxtLink to="/" class="text-2xl font-bold"><img src="/image/pwa_cubable_235x.png" alt="Cubable Logo" width="40"/>
           </NuxtLink>
         <nav class="hidden md:flex space-x-4">
-          <NuxtLink to="/workspaces" class="hover:text-blue-200">Bases</NuxtLink>
+          <NuxtLink to="/" class="hover:text-blue-200">Bases</NuxtLink>
           <button @click="logout" class="flex items-center hover:text-blue-200">
             <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="mr-2" />
             Logout
@@ -27,13 +27,14 @@
       </div>
     </nav>
 
-    <main class="flex-grow container mx-auto px-4 py-8 ">
+    <main class="flex-grow container mx-auto py-8" :class="{'px-4': route.path == '/'}">
       <slot />
     </main>
   </div>
 </template>
 
 <script setup>
+const route = useRoute()
 const mobileMenuOpen = ref(false)
 
 const toggleMobileMenu = () => {

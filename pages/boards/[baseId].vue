@@ -1,15 +1,43 @@
 <template>
-  <div class="left-panel">
-
+  <div class="show-left-panel" @click="showLeftPanelHandle">    
+      <font-awesome-icon :icon="['fas', 'angles-right']" class="w-4"/>
   </div>
-  <div class="show-left-panel w-16 bg-white p-2 absolute top-16 left-0 border-gray-100 rounded-r-full flex items-end">
-    <font-awesome-icon :icon="['fas', 'border-none']" />
+  <div class="left-panel" ref="leftPanel">
+    <button class="btn-primary-outline create-new-board flex items-center justify-center">
+      <font-awesome-icon :icon="['fas', 'plus']" class="w-3 mr-2"/>
+    </button>
+    <div class="list-boards">
+      <div class="board ">
+        <NuxtLink to="/" class="flex">
+          <font-awesome-icon :icon="['fas', 'table']" class="w-3 mr-2"/> <p>Boards name</p>
+        </NuxtLink>
+      </div>
+
+      <div class="board ">
+        <NuxtLink to="/" class="flex">
+          <font-awesome-icon :icon="['fas', 'table']" class="w-3 mr-2"/> <p>Boards name</p>
+        </NuxtLink>
+      </div>
+
+      <div class="board ">
+        <NuxtLink to="/" class="flex">
+          <font-awesome-icon :icon="['fas', 'table']" class="w-3 mr-2"/> <p>Boards name</p>
+        </NuxtLink>
+      </div>
+
+      <div class="board ">
+        <NuxtLink to="/" class="flex">
+          <font-awesome-icon :icon="['fas', 'table']" class="w-3 mr-2"/> <p>Boards name</p>
+        </NuxtLink>
+      </div>
+    </div>
   </div>
   <div>
     <div class="flex items-center mb-4">
       <button @click="$router.back()" class="mr-4">
         <font-awesome-icon :icon="['fas', 'chevron-left']" />
       </button>
+
     </div>
     <DataTable
       :columns="columns"
@@ -18,6 +46,8 @@
       :options="{
         responsive: true,
         scrollX: true,
+        searching: false,
+        paging: false,
         pageLength: 20,
         lengthMenu: [20, 50, 100],
       }"
@@ -44,6 +74,7 @@ DataTable.use(DataTablesCore)
 
 const route = useRoute()
 const baseId = route.params.baseId
+const leftPanel = ref('')
 
 const columns = [
   { data: 'selected', title: '', orderable: false, searchable: false, defaultContent: '' },
@@ -92,4 +123,36 @@ const createNew = () => {
 onMounted(() => {
   loadRows()
 })
+
+const showLeftPanelHandle = (e)=>{
+  leftPanel.value.classList.add("show")
+}
+
 </script>
+<style scoped>
+.show-left-panel{
+  @apply w-10 bg-white p-2 absolute top-16 left-0 border-gray-300 border rounded-r-full flex justify-end;
+}
+
+.left-panel{
+  @apply h-screen w-[75%] bg-white z-50 absolute top-14 shadow-xl drop-shadow-xl px-4 py-8 flex flex-col gap-3 -left-[75%]
+    transition-all
+  ;
+}
+
+.show{
+  @apply left-0;
+}
+
+.list-boards{
+  @apply flex flex-col gap-2
+}
+
+.board{
+  @apply px-2 py-2 rounded-md hover:bg-[#5500ff44];
+}
+
+.create-new-board{
+  @apply mx-auto w-full;
+}
+</style>

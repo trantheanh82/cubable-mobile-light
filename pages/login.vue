@@ -22,7 +22,6 @@
 
 <script setup>
 const inputAccessToken = ref(null)
-const accessToken = ref(null)
 const error = ref('')
 
 const submitToken = () => {

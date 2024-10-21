@@ -29,6 +29,10 @@ const {data:bases, pending, error} = await useFetch('/api/cubable/get-bases',{
 const navigateToBase = (baseID) => {
   navigateTo(`/boards/detail?baseID=${baseID}`)
 }
+
+definePageMeta({
+  middlewares: ['token']
+})
 </script>
 <style scoped>
 .card-bases{
