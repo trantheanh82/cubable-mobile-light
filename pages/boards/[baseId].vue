@@ -2,33 +2,34 @@
   <div class="show-left-panel" @click="showLeftPanelHandle">    
       <font-awesome-icon :icon="['fas', 'angles-right']" class="w-4"/>
   </div>
-  <div class="left-panel" ref="leftPanel">
+  <div class="left-panel" ref="leftPanel" @blur="hideLeftPanelHandle" tabindex="0">
     <button class="btn-primary-outline create-new-board flex items-center justify-center">
       <font-awesome-icon :icon="['fas', 'plus']" class="w-3 mr-2"/>
     </button>
     <div class="list-boards">
       <div class="board ">
         <NuxtLink to="/" class="flex">
-          <font-awesome-icon :icon="['fas', 'table']" class="w-3 mr-2"/> <p>Boards name</p>
+          <font-awesome-icon :icon="['fas', 'table-list']" class="w-3 mr-2"/> <p>Boards name</p>
         </NuxtLink>
+          <font-awesome-icon :icon="['fas', 'ellipsis']" class="w-3 mr-2"/>
       </div>
-
       <div class="board ">
         <NuxtLink to="/" class="flex">
-          <font-awesome-icon :icon="['fas', 'table']" class="w-3 mr-2"/> <p>Boards name</p>
+          <font-awesome-icon :icon="['fas', 'table-list']" class="w-3 mr-2"/> <p>Boards name</p>
         </NuxtLink>
+          <font-awesome-icon :icon="['fas', 'ellipsis']" class="w-3 mr-2"/>
       </div>
-
       <div class="board ">
         <NuxtLink to="/" class="flex">
-          <font-awesome-icon :icon="['fas', 'table']" class="w-3 mr-2"/> <p>Boards name</p>
+          <font-awesome-icon :icon="['fas', 'table-list']" class="w-3 mr-2"/> <p>Boards name</p>
         </NuxtLink>
+          <font-awesome-icon :icon="['fas', 'ellipsis']" class="w-3 mr-2"/>
       </div>
-
       <div class="board ">
         <NuxtLink to="/" class="flex">
-          <font-awesome-icon :icon="['fas', 'table']" class="w-3 mr-2"/> <p>Boards name</p>
+          <font-awesome-icon :icon="['fas', 'table-list']" class="w-3 mr-2"/> <p>Boards name</p>
         </NuxtLink>
+          <font-awesome-icon :icon="['fas', 'ellipsis']" class="w-3 mr-2"/>
       </div>
     </div>
   </div>
@@ -42,14 +43,17 @@
     <DataTable
       :columns="columns"
       :data="rows"
-      class="display responsive nowrap"
+      class="stripe row-border order-column responsive nowrap"
       :options="{
         responsive: true,
-        scrollX: true,
         searching: false,
         paging: false,
-        pageLength: 20,
         lengthMenu: [20, 50, 100],
+        scrollY: '300px',
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+        fixedColumns: true,
       }"
     >
       <template #checkbox="{ row }">
@@ -125,7 +129,14 @@ onMounted(() => {
 })
 
 const showLeftPanelHandle = (e)=>{
+  console.log(e.target)
+  e.target.classList.add("-left-14")
   leftPanel.value.classList.add("show")
+  leftPanel.value.focus()
+}
+
+const hideLeftPanelHandle = (e)=>{
+  leftPanel.value.classList.remove('show')
 }
 
 </script>
@@ -135,7 +146,7 @@ const showLeftPanelHandle = (e)=>{
 }
 
 .left-panel{
-  @apply h-screen w-[75%] bg-white z-50 absolute top-14 shadow-xl drop-shadow-xl px-4 py-8 flex flex-col gap-3 -left-[75%]
+  @apply h-screen w-[75%] bg-white z-50 absolute top-14 shadow-xl drop-shadow-xl px-4 py-8 flex flex-col gap-3 -left-[75%] outline-none
     transition-all
   ;
 }
@@ -145,11 +156,11 @@ const showLeftPanelHandle = (e)=>{
 }
 
 .list-boards{
-  @apply flex flex-col gap-2
+  @apply flex flex-col gap-2;
 }
 
 .board{
-  @apply px-2 py-2 rounded-md hover:bg-[#5500ff44];
+  @apply px-2 py-2 rounded-md hover:bg-[#5500ff11] flex  justify-between;
 }
 
 .create-new-board{
