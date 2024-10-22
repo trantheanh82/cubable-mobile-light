@@ -1,25 +1,59 @@
 <template>
-  <div class="left-panel">
-
+  <div class="show-left-panel" @click="showLeftPanelHandle">    
+      <font-awesome-icon :icon="['fas', 'angles-right']" class="w-4"/>
   </div>
-  <div class="show-left-panel w-16 bg-white p-2 absolute top-16 left-0 border-gray-100 rounded-r-full flex items-end">
-    <font-awesome-icon :icon="['fas', 'border-none']" />
+  <div class="left-panel" ref="leftPanel" @blur="hideLeftPanelHandle" tabindex="0">
+    <button class="btn-primary-outline create-new-board flex items-center justify-center">
+      <font-awesome-icon :icon="['fas', 'plus']" class="w-3 mr-2"/>
+    </button>
+    <div class="list-boards">
+      <div class="board ">
+        <NuxtLink to="/" class="flex">
+          <font-awesome-icon :icon="['fas', 'table-list']" class="w-3 mr-2"/> <p>Boards name</p>
+        </NuxtLink>
+          <font-awesome-icon :icon="['fas', 'ellipsis']" class="w-3 mr-2"/>
+      </div>
+      <div class="board ">
+        <NuxtLink to="/" class="flex">
+          <font-awesome-icon :icon="['fas', 'table-list']" class="w-3 mr-2"/> <p>Boards name</p>
+        </NuxtLink>
+          <font-awesome-icon :icon="['fas', 'ellipsis']" class="w-3 mr-2"/>
+      </div>
+      <div class="board ">
+        <NuxtLink to="/" class="flex">
+          <font-awesome-icon :icon="['fas', 'table-list']" class="w-3 mr-2"/> <p>Boards name</p>
+        </NuxtLink>
+          <font-awesome-icon :icon="['fas', 'ellipsis']" class="w-3 mr-2"/>
+      </div>
+      <div class="board ">
+        <NuxtLink to="/" class="flex">
+          <font-awesome-icon :icon="['fas', 'table-list']" class="w-3 mr-2"/> <p>Boards name</p>
+        </NuxtLink>
+          <font-awesome-icon :icon="['fas', 'ellipsis']" class="w-3 mr-2"/>
+      </div>
+    </div>
   </div>
   <div>
     <div class="flex items-center mb-4">
       <button @click="$router.back()" class="mr-4">
         <font-awesome-icon :icon="['fas', 'chevron-left']" />
       </button>
+
     </div>
     <DataTable
       :columns="columns"
       :data="rows"
-      class="display responsive nowrap"
+      class="stripe row-border order-column responsive nowrap"
       :options="{
         responsive: true,
-        scrollX: true,
-        pageLength: 20,
+        searching: false,
+        paging: false,
         lengthMenu: [20, 50, 100],
+        scrollY: '300px',
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+        fixedColumns: true,
       }"
     >
       <template #checkbox="{ row }">
@@ -44,6 +78,7 @@ DataTable.use(DataTablesCore)
 
 const route = useRoute()
 const baseId = route.params.baseId
+const leftPanel = ref('')
 
 const columns = [
   { data: 'selected', title: '', orderable: false, searchable: false, defaultContent: '' },
@@ -92,4 +127,43 @@ const createNew = () => {
 onMounted(() => {
   loadRows()
 })
+
+const showLeftPanelHandle = (e)=>{
+  console.log(e.target)
+  e.target.classList.add("-left-14")
+  leftPanel.value.classList.add("show")
+  leftPanel.value.focus()
+}
+
+const hideLeftPanelHandle = (e)=>{
+  leftPanel.value.classList.remove('show')
+}
+
 </script>
+<style scoped>
+.show-left-panel{
+  @apply w-10 bg-white p-2 absolute top-16 left-0 border-gray-300 border rounded-r-full flex justify-end;
+}
+
+.left-panel{
+  @apply h-screen w-[75%] bg-white z-50 absolute top-14 shadow-xl drop-shadow-xl px-4 py-8 flex flex-col gap-3 -left-[75%] outline-none
+    transition-all
+  ;
+}
+
+.show{
+  @apply left-0;
+}
+
+.list-boards{
+  @apply flex flex-col gap-2;
+}
+
+.board{
+  @apply px-2 py-2 rounded-md hover:bg-[#5500ff11] flex  justify-between;
+}
+
+.create-new-board{
+  @apply mx-auto w-full;
+}
+</style>

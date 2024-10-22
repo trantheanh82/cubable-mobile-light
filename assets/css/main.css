@@ -5,6 +5,7 @@
 @layer base{
   body {
     font-family: 'Be Vietnam Pro', sans-serif;
+    @apply text-sm;
   }
 
   p{
@@ -12,6 +13,11 @@
   }
 
   .btn-primary{
-    @apply bg-[#5500ff] text-white;
+    @apply bg-[#5500ff] text-white py-2 px-8 rounded-lg;
+  }
+
+  .btn-primary-outline{
+    @apply border border-[#5500ff] text-[#5500ff] py-2 px-8 rounded-lg 
+    hover:bg-[#5500ff] hover:text-white border hover:border-white;
   }
 }
