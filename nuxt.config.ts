@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss','@kevinmarrec/nuxt-pwa'],  
+  modules: ['@nuxtjs/tailwindcss','@kevinmarrec/nuxt-pwa'],
   css: ['~/assets/css/main.css'],
+
   app: {
     head: {
       link: [
@@ -11,6 +12,7 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   build: {
     transpile: [
       '@fortawesome/vue-fontawesome',
@@ -20,6 +22,7 @@ export default defineNuxtConfig({
       'vueuc'
     ]
   },
+
   pwa: {
     manifest: {
       name: 'Cubable Mobile Light',
@@ -58,5 +61,7 @@ export default defineNuxtConfig({
     icon: {
       source: 'public/icon.png',
     }
-  }
+  },
+
+  compatibilityDate: '2024-10-21'
 })
