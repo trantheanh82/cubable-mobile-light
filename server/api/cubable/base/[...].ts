@@ -18,10 +18,9 @@ router.get(
 
         return {
                 message: 'successful',
-                data: baseDetail
+                bases: baseDetail
               }
     })
 )
-
 
 export default useBase('/api/cubable/base', router.handler);

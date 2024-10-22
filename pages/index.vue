@@ -31,7 +31,7 @@ const navigateToBase = (baseID) => {
 }
 
 definePageMeta({
-  middlewares: ['token']
+  middleware: ['token']
 })
 </script>
 <style scoped>

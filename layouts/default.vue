@@ -27,7 +27,7 @@
       </div>
     </nav>
 
-    <main class="flex-grow container mx-auto py-8" :class="{'px-4': route.path == '/'}">
+    <main class="flex-grow container mx-auto py-8" :class="{'px-4': route.path == '/login' || route.path == '/' }">
       <slot />
     </main>
   </div>
@@ -40,6 +40,11 @@ const mobileMenuOpen = ref(false)
 const toggleMobileMenu = () => {
   mobileMenuOpen.value = !mobileMenuOpen.value
 }
+
+const pageInPadding = [
+  '/login',
+  '/'
+]
 
 const logout = () => {
   // Implement logout logic here

@@ -74,10 +74,14 @@
 import { DataTable } from 'datatables.net-vue3'
 import DataTablesCore from 'datatables.net-dt'
 
+const route = useRoute()
+
+const baseID = route.query.baseID
+const {data, error, pending } = await useFetch(`/api/cubable/base/detail?baseID=${baseID}`)
+console.log(data)
+
 DataTable.use(DataTablesCore)
 
-const route = useRoute()
-const baseId = route.params.baseId
 const leftPanel = ref('')
 
 const columns = [
@@ -139,14 +143,19 @@ const hideLeftPanelHandle = (e)=>{
   leftPanel.value.classList.remove('show')
 }
 
+
+definePageMeta({
+  layout: 'board',
+  middleware: ['token']
+})
 </script>
 <style scoped>
 .show-left-panel{
-  @apply w-10 bg-white p-2 absolute top-16 left-0 border-gray-300 border rounded-r-full flex justify-end;
+  @apply w-10 bg-white p-2 absolute top-2 left-0 border-gray-300 border rounded-r-full flex justify-end z-50;
 }
 
 .left-panel{
-  @apply h-screen w-[75%] bg-white z-50 absolute top-14 shadow-xl drop-shadow-xl px-4 py-8 flex flex-col gap-3 -left-[75%] outline-none
+  @apply h-screen w-[75%] bg-white z-50 absolute shadow-xl drop-shadow-xl px-4 py-8 flex flex-col gap-3 -left-[75%] outline-none
     transition-all
   ;
 }
