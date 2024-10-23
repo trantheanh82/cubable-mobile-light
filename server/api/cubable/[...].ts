@@ -1,7 +1,8 @@
-import { createRouter, defineEventHandler, readBody, useBase, getCookie,parseCookies } from 'h3';
+import { createRouter, defineEventHandler, readBody, useBase, parseCookies } from 'h3';
+import { useRuntimeConfig } from 'nuxt/app'
 
 const router = createRouter();
-const apiEndPoint = "https://open.cubable.com/api/v1/"
+const runtimeConfig = useRuntimeConfig()
 
 router.post(
     '/access-token',defineEventHandler(async (event)=>{
@@ -14,7 +15,7 @@ router.get(
     '/get-bases', defineEventHandler(async (event)=>{
         const cookie = parseCookies(event)
 
-        const bases = await $fetch(`${apiEndPoint}bases`,{
+        const bases = await $fetch(`${runtimeConfig.public.API_ENDPOINT}bases`,{
             method: 'GET',
             headers: {
                 authorization: `Bearer ${cookie.accessToken}`,
